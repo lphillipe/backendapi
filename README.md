@@ -85,4 +85,3 @@ flask run --host 0.0.0.0 --port 5000 --reload
 Com a API em execução, abra o navegador e acesse o seguinte endereço para verificar a documentação e o status:
 
 [http://localhost:5000/#/](http://localhost:5000/#/)
-
