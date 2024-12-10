@@ -26,7 +26,7 @@ def home():
     return redirect('/openapi')
 
 
-@app.post('/livro', tags=[livro_tag],
+@app.post('/livro_adiciona', tags=[livro_tag],
           responses={"200": LivroViewSchema, "409": ErrorSchema, "400": ErrorSchema})
 def add_livro(form: LivroSchema):
     """Adiciona um novo Livro na base de dados
@@ -62,10 +62,10 @@ def add_livro(form: LivroSchema):
         return {"mesage": error_msg}, 400
 
 
-@app.get('/livros', tags=[livro_tag],
+@app.get('/livros_list', tags=[livro_tag],
          responses={"200": ListagemLivrosSchema, "404": ErrorSchema})
 def get_livros():
-    """Faz a busca por todos os Livros cadastrados
+    """Lista todos os Livros cadastrados.
 
     Retorna uma representação da listagem de livros.
     """
@@ -85,7 +85,7 @@ def get_livros():
         return apresenta_livros(livros), 200
 
 
-@app.get('/livro', tags=[livro_tag],
+@app.get('/livro_busca', tags=[livro_tag],
          responses={"200": LivroViewSchema, "404": ErrorSchema})
 def get_livro(query: LivroBuscaSchema):
     """Faz a busca por um livro a partir do nome do livro.
@@ -110,7 +110,7 @@ def get_livro(query: LivroBuscaSchema):
         return apresenta_livro(livro), 200
 
 
-@app.delete('/livro', tags=[livro_tag],
+@app.delete('/livro_del', tags=[livro_tag],
             responses={"200": LivroDelSchema, "404": ErrorSchema})
 def del_livro(query: LivroBuscaSchema):
     """Deleta um livro a partir do seu nome.
